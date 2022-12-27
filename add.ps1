@@ -8,9 +8,7 @@ foreach ($user in $users) {
     $full_name = "$first_name $last_name"
     $username = $user.username
     $password = $user.password
-    
 
-    $user_obj =  -ErrorAction SilentlyContinue
     if (Get-ADUser -Filter {SamAccountName -eq $username}) {
         Write-Host "Il existe déjà un utilisateur $username"
     }
