@@ -1,6 +1,6 @@
 Import-Module ActiveDirectory
 
-$users = Import-Csv -Path 'users.csv' -Header "username"
+$users = Import-Csv -Path 'disable.csv' -Header "username"
 foreach ($user in $users) {
     $username = $user.username
 
