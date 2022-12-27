@@ -14,9 +14,9 @@ foreach ($user in $users) {
     $user_obj = Get-ADUser -Filter {SamAccountName -eq $username} -ErrorAction SilentlyContinue
     if (!$user_obj) {
         # If the account doesn't exist, create it with the provided information
-        $ou = 'ou=users,dc=example,dc=com'
+        $ou = 'ou=Utlisateurs ,dc=L2-4,dc=com'
         try {
-            New-ADUser -SamAccountName $username -GivenName $first_name -Surname $last_name -DisplayName $full_name Path "OU=Utilisateurs, DC=l2-4, DC=lab" -AccountPassword (ConvertTo-SecureString -AsPlainText $password -Force) -Enabled $true
+            New-ADUser -SamAccountName $username -GivenName $first_name -Surname $last_name -DisplayName $full_name -Path $ou -AccountPassword (ConvertTo-SecureString -AsPlainText $password -Force) -Enabled $true
             
             # Display a message indicating that the account was created
             Write-Host "The account $username was created in Active Directory."
