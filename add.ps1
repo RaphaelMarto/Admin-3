@@ -18,6 +18,5 @@ foreach ($user in $users) {
         $ou = 'ou=Utlisateurs ,dc=L2-4,dc=com'
         New-ADUser -SamAccountName $username -GivenName $first_name -Surname $last_name -DisplayName $full_name -Path $ou -AccountPassword (ConvertTo-SecureString -AsPlainText $password -Force) -Enabled $true
         Write-Host "The account $username was created in Active Directory."
-        }
     }
 }
