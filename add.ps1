@@ -1,7 +1,7 @@
 Import-Module ActiveDirectory
 
 
-$users = Import-Csv -Path 'add.csv'
+$users = Import-Csv -Path 'add.csv' -Header "first_name", "last_name", "username", "password"
 foreach ($user in $users) {
     $last_name = $user.last_name
     $first_name = $user.first_name
