@@ -24,8 +24,6 @@ with open('utilisateurs.csv', 'r') as f:
             user.set_givenName(prenom_utilisateur)
             user.set_surname(nom_utilisateur)
             user.set_displayName(nom_complet)
-            user.set_userPrincipalName(f"{nom_compte}@example.com")
-            user.set_mail(f"{nom_compte}@example.com")
             user.set_password(mot_de_passe)
             
             # Enregistrez les modifications de l'objet utilisateur dans Active Directory
