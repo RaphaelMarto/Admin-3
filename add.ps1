@@ -1,7 +1,7 @@
 Import-Module ActiveDirectory
 
 # Open the CSV file and read each line
-$users = Import-Csv -Path 'users.csv'
+$users = Import-Csv -Path 'add.csv'
 foreach ($user in $users) {
     # Retrieve user information from the CSV line
     $last_name = $user.last_name
