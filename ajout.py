@@ -18,16 +18,20 @@ with open('utilisateurs.csv', 'r') as f:
         user = pyad.aduser.ADUser.from_cn(nom_compte)
         if not user:
             # Si le compte n'existe pas, créez-le avec pyad dans l'OU "utilisateurs"
-            user = pyad.aduser.ADUser.create(nom_compte, ou='ou=utilisateurs,dc=l2-4,dc=lab')
-            
-            # Affectez les propriétés de l'objet utilisateur
-            user.set_givenName(prenom_utilisateur)
-            user.set_surname(nom_utilisateur)
-            user.set_displayName(nom_complet)
-            user.set_password(mot_de_passe)
-            
-            # Enregistrez les modifications de l'objet utilisateur dans Active Directory
-            user.update_changes()
-        else:
-            # Si le compte existe déjà, affichez un message d'erreur
-            print(f"Le compte {nom_compte} existe déjà dans Active Directory.")
+            try:
+                user = pyad.aduser.ADUser.create(nom_compte, ou='ou=Utilisateurs,dc=L2-4,dc=lab')
+                
+                # Affectez les propriétés de l'objet utilisateur
+                user.set_givenName(prenom_utilisateur)
+                user.set_surname(nom_utilisateur)
+                user.set_displayName(nom_complet)
+                user.set_password(mot_de_passe)
+                
+                # Enregistrez les modifications de l'objet utilisateur dans Active Directory
+                user.update_changes()
+            except pyad.aduser.ADUserAlreadyExists:
+                # Si le compte existe déjà, affichez un message d'erreur
+                print(f"Le compte {nom_compte} existe déjà dans Active Directory.")
+            except Exception as e:
+                # Si une autre erreur se produit, affichez un message d'erreur
+                print(f"Une erreur s'est produite lors de la création
